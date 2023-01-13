@@ -21,30 +21,43 @@
 </head>
 
 <body>
+    <div class="container" style="background-color:darkblue;">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand">
+                    <h3 class="display-7">
+                        Receipt Scanner App
+                    </h3>
+                </a>
 
-    <nav class="navbar navbar-light" style="background-color:blanchedalmond;">
-        <div class="container">
-            <a href="/" class="navbar-brand">
-                <h3 class="display-7">
-                    Receipt Scanner App
-                </h3>
-            </a>
-
-
-            <ul class="navbar-nav">
-                <li class="item">
-                    <a class="nav-link" href="/about">
-                        使用方法&開発環境
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">
+                            使用説明&開発環境
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/zero258014/Receipt-OCR" target="_blank">
+                            <img src="../static/images/github-mark-white.png" alt="github"
+                                style="width: 25px; height:25px">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <div class="container">
         {% block body %}
         <h3>レシート識別アプリ</h3>
         {% endblock %}
+    </div>
+    <div class="fixed-bottom" id="footer" style="background-color:white;">
+        <div class="container text-center">
+            <p style="color:black; margin-bottom:0">
+                吉田学園情報ビジネス専門学校<br>
+                AIシステム学科制作作品
+            </p>
+        </div>
     </div>
 </body>
 

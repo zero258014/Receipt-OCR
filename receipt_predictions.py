@@ -127,7 +127,7 @@ def getPredictions(image):
         label = str(label)
         cv2.rectangle(img_bb, (l, t), (r, b), (0, 255, 0), 2)
         cv2.putText(img_bb, label, (l, t),
-                    cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 255), 2)
+                    cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 2)
 
     info_array = dataframe_info[["tokens", "label"]].values
     entities = dict(shop=[], date=[], time=[], product=[], price=[], total=[])

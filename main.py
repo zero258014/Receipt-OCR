@@ -25,7 +25,7 @@ def scanimg():
         four_points, size = receipt_scan.document_scanner(upload_image_path)
         print(four_points, size)
         if four_points is None:
-            message = "レシートの座標を見つからないので、ランダムの座標を表示する"
+            message = "識別したいエリアを調整してください"
             points = [
                 {"x": 10, "y": 10},
                 {"x": 120, "y": 10},
@@ -40,7 +40,7 @@ def scanimg():
 
         else:
             points = utils.array_to_json_format(four_points)
-            message = "opencvを使って、レシートの座標を見つかった"
+            message = "識別したいエリアを調整してください"
 
             return render_template("scanner.html",
                                    points=points,

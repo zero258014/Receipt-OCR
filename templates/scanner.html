@@ -2,10 +2,8 @@
 
 {% block body %}
 <br>
-<br>
 
-
-<h4>
+<h4 align="center">
     識別したいレシートをアップロードしてください
 </h4>
 
@@ -32,11 +30,12 @@
 
 <!-- レシートを表示するため、canvasを作る -->
 {% if fileupload %}
-<p>{{ message }}</p>
+<br>
 
+<p  align="center" style="font-size:24px; font-weight:bold;">{{ message }}</p>
 <div class="row">
-    <div class="col">
-        <canvas id="canvas" style="max-width:100%; height:auto; "></canvas>
+    <div class="col" align="center">
+        <canvas id="canvas" style="max-width:50%; height:auto;"></canvas>
 
     </div>
     <div class="col" id="loader" align="center">
@@ -51,3 +50,4 @@
 
 
 {% endblock %}
+

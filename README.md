@@ -9,7 +9,9 @@ Japanese Receipt OCR
 - 識別できるレシートの言語は日本語です。※2
 - エリア調整について、以下のようにレシートを囲むのほうが識別率が高いです。
 
-![](C:\Users\students\Desktop\YoshidaLesson\OCR\OCR-side-project\receipt\04_WebApp\static\images\sample.jpg)
+```
+![sample](static/images/sample.jpg)
+```
 
 ※1 取り出せる特定の言葉は「shop」「date」「time」「product」「price」「total」六種類がある。  
        識別できなかったり、誤認識したり、する場合もあります。ご注意ください。  

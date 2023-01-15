@@ -103,7 +103,7 @@ spacy-loggers==1.0.3
 spacy-pkuseg==0.0.32
 srsly==2.4.5
 stack-data==0.6.1
-SudachiDict-core
+SudachiDict-core==20230110
 SudachiPy==0.6.6
 terminado==0.17.0
 thinc==8.1.5

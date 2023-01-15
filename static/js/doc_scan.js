@@ -1,4 +1,3 @@
-
 // アップロードした画像の調整
 // cv2で取った４点の座標を画像に表す
 
@@ -16,9 +15,7 @@ window.onload = function () {
   canvas.onmouseup = stopDragging;
   canvas.onmouseout = stopDragging;
   canvas.onmousemove = dragCircle;
-
 };
-
 
 class Circle {
   constructor(x, y, radius, color) {
@@ -30,12 +27,10 @@ class Circle {
   }
 }
 
-
 function processFunction(file) {
-  const files = file
-  process(file)
+  const files = file;
+  process(file);
 }
-
 
 function loadImage(file) {
   return new Promise((resolve, reject) => {
@@ -48,29 +43,22 @@ function loadImage(file) {
   });
 }
 
-
-
 function loadPoints(points) {
-
   for (var i = 0; i < points.length; i++) {
     var radius = 6;
     var x = points[i].x;
     var y = points[i].y;
-    console.log(x, y)
+    console.log(x, y);
 
-    var color = "#FFFF00"
+    var color = "#FFFF00";
     var circle = new Circle(x, y, radius, color);
     circles.push(circle);
-    processFunction('/static/media/resize_image.jpg')
-
+    processFunction("/static/media/resize_image.jpg");
   }
-};
-
-
+}
 
 function drawCircles() {
-
-  context = $("canvas")[0].getContext('2d');
+  context = $("canvas")[0].getContext("2d");
   canvas = $("canvas")[0];
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.drawImage(img, 0, 0, img.width, img.height);
@@ -85,21 +73,20 @@ function drawCircles() {
 
     if (circle.isSelected) {
       context.lineWidth = 4;
-    }
-    else {
+    } else {
       context.lineWidth = 2;
-
     }
     context.fill();
     context.stroke();
     context.beginPath();
     context.moveTo(circle.x, circle.y);
-    context.lineTo(circles[i - 1 >= 0 ? i - 1 : 3].x, circles[i - 1 >= 0 ? i - 1 : 3].y);
+    context.lineTo(
+      circles[i - 1 >= 0 ? i - 1 : 3].x,
+      circles[i - 1 >= 0 ? i - 1 : 3].y
+    );
     context.stroke();
   }
-
 }
-
 
 function canvasClick(e) {
   var clickX = e.pageX - canvas.offsetLeft;
@@ -107,10 +94,12 @@ function canvasClick(e) {
 
   for (var i = circles.length - 1; i >= 0; i--) {
     var circle = circles[i];
-    var distanceFromCenter = Math.sqrt(Math.pow(circle.x - clickX, 2)
-      + Math.pow(circle.y - clickY, 2));
+    var distanceFromCenter = Math.sqrt(
+      Math.pow(circle.x - clickX, 2) + Math.pow(circle.y - clickY, 2)
+    );
     if (distanceFromCenter <= circle.radius) {
-      if (previousSelectedCircle != null) previousSelectedCircle.isSelected = false;
+      if (previousSelectedCircle != null)
+        previousSelectedCircle.isSelected = false;
       previousSelectedCircle = circle;
 
       circle.isSelected = true;
@@ -122,8 +111,6 @@ function canvasClick(e) {
     }
   }
 }
-
-
 
 function stopDragging() {
   isDragging = false;
@@ -143,8 +130,6 @@ function dragCircle(e) {
   }
 }
 
-
-
 function clearCanvas() {
   circles = [];
 
@@ -160,29 +145,31 @@ $(document).ready(function () {
   $("#sendData").click(function () {
     $("#loader").html('<img src="/static/images/scan.gif">');
     $.ajax({
-      type: 'POST',
+      type: "POST",
       url: "/transform",
-      contentType: 'application/json;charset=UTF-8',
+      contentType: "application/json;charset=UTF-8",
       data: JSON.stringify({
-        "data": [[circles[0].x, circles[0].y],
-        [circles[1].x, circles[1].y],
-        [circles[2].x, circles[2].y],
-        [circles[3].x, circles[3].y]]
+        data: [
+          [circles[0].x, circles[0].y],
+          [circles[1].x, circles[1].y],
+          [circles[2].x, circles[2].y],
+          [circles[3].x, circles[3].y],
+        ],
       }),
       success: function () {
-        window.location.href = 'prediction';
-      }
+        window.location.href = "prediction";
+      },
     });
   });
 });
 
 window.process = async (file) => {
-  let ctx = $("canvas")[0].getContext('2d');
+  let ctx = $("canvas")[0].getContext("2d");
   const img = await loadImage(file);
-  console.log("enter into process")
+  console.log("enter into process");
   $("canvas")[0].width = img.width;
   $("canvas")[0].height = img.height;
   window.img = img;
   ctx.drawImage(img, 0, 0, img.width, img.height);
   drawCircles();
-}
+};

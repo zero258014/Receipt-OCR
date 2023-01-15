@@ -1,53 +1,40 @@
-{% extends 'index.html' %}
+{% extends 'index.html' %} {% block body %}
+<br />
 
-{% block body %}
-<br>
+<h4 align="center">識別したいレシートをアップロードしてください</h4>
 
-<h4 align="center">
-    識別したいレシートをアップロードしてください
-</h4>
-
-<br>
+<br />
 
 <div class="row">
-    <form action="#" method="post" enctype="multipart/form-data">
-        <div class="input-group">
-            <input type="file" class="form-control" name="image_name" required>
-            <input type="submit" value="upload image" name="btn btn-primary">
-
-        </div>
-    </form>
-    <br>
-    {% if fileupload %}
-
-    <div class="row">
-        <button class="btn btn-primary" id="sendData"> 識別開始</button>
+  <form action="#" method="post" enctype="multipart/form-data">
+    <div class="input-group">
+      <input type="file" class="form-control" name="image_name" required />
+      <input type="submit" value="upload image" name="btn btn-primary" />
     </div>
+  </form>
+  <br />
+  {% if fileupload %}
 
-    {% endif %}
+  <div class="row">
+    <button class="btn btn-primary" id="sendData">識別開始</button>
+  </div>
 
+  {% endif %}
 </div>
 
 <!-- レシートを表示するため、canvasを作る -->
 {% if fileupload %}
-<br>
+<br />
 
-<p  align="center" style="font-size:24px; font-weight:bold;">{{ message }}</p>
+<p align="center" style="font-size: 24px; font-weight: bold">{{ message }}</p>
 <div class="row">
-    <div class="col" align="center">
-        <canvas id="canvas" style="max-width:50%; height:auto;"></canvas>
-
-    </div>
-    <div class="col" id="loader" align="center">
-
-    </div>
+  <div class="col" align="center">
+    <canvas id="canvas" style="max-width: 100%; height: auto"></canvas>
+  </div>
+  <div class="col" id="loader" align="center"></div>
 </div>
 
 <script>
-    loadPoints({{ points | tojson }})
+  loadPoints({{ points | tojson }})
 </script>
-{% endif %}
-
-
-{% endblock %}
-
+{% endif %} {% endblock %}
